@@ -36,7 +36,7 @@ public class MementoView implements Observer {
     JButton startButton;
     StartButtonListener startListener;  
     
-    //разделители меню объявляются и инициализируются в методе createMenu ();
+    //СЂР°Р·РґРµР»РёС‚РµР»Рё РјРµРЅСЋ РѕР±СЉСЏРІР»СЏСЋС‚СЃСЏ Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‚СЃСЏ РІ РјРµС‚РѕРґРµ createMenu ();
     JMenuBar menuBar;
     JMenu fontSettings;
     JMenu symbolsSettings;
@@ -75,7 +75,7 @@ public class MementoView implements Observer {
             //showNumber(this.game.getCurrentRandomNumber());
             showString(this.game.getCurrentRandomString());
             highlight();            
-            timer.restart();            // начинаем отсчет (именно restart'ом)
+            timer.restart();            // // РЅР°С‡РёРЅР°РµРј РѕС‚СЃС‡РµС‚ (РёРјРµРЅРЅРѕ restart'РѕРј)
             highlight();
             //timer = null;            
             
