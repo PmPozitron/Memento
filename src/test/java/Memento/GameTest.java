@@ -46,7 +46,7 @@ public class GameTest {
     public void setUp() {
         //controller.game.getCurrentSymbolsSet();
         //controller.game.stringGenerator = new RandomSymbolsGenerator (RandomSymbolsGenerator.DIGITS_ONLY + RandomSymbolsGenerator.CYRILLIC_LOWER_CASE);
-        controller.view.startButton.doClick();   
+        controller.getView().getStartButton().doClick();   
         
     }
     
@@ -63,26 +63,29 @@ public class GameTest {
     @Test
     public void testStartGame() {
         
-        assertTrue("Parameter game.gameOn has to be true ", controller.game.isGameOn());        
+        assertTrue("Parameter game.gameOn has to be true ", controller.getGame().isGameOn());        
     }
     
 
     @Test
     public void testRandomSymbolGenerateAndDisplay() {
         assertEquals("The text in the outputfield must be the same as in controller.game.randomString ", 
-                controller.view.outputField.getText(), controller.game.getCurrentRandomString());       
+                controller.getView().getOutputField().getText(), controller.getGame().getCurrentRandomString());       
     }    
     
 
     @Test
     public void testEndGame() {
-        for (int i = 0; i < controller.game.getCurrentQtyOfShows(); i++) {
-            //robot.keyPress(KeyEvent.VK_ENTER);
-            controller.receiveUserInput(controller.view.inputField.getText());
-            //controller.game.setShowsCounter();
-            //System.out.println(controller.game.getShowsCounter());
+        
+        for (int i = 0; i < controller.getGame().getCurrentQtyOfShows(); i++) {
+            
+            controller.receiveUserInput(controller.getView().getInputField().getText());
+//            robot.keyPress(KeyEvent.VK_ENTER);
+//            robot.keyRelease(KeyEvent.VK_ENTER);
+            controller.getGame().setShowsCounter();
+            System.out.println(controller.getGame().getShowsCounter());
         }
-        assertFalse("The game should already be finished ", controller.game.isGameOn());
+        assertFalse("The game should already be finished ", controller.getGame().isGameOn());
     }
     
     @Test
@@ -90,27 +93,27 @@ public class GameTest {
         prepareForReadSettingsTest();              
         controller.readSettings();
 
-        controller.game.initializeGame(controller.showDuration, controller.randomStringLength, controller.useDigits, controller.useLowerCaseCyrillic, 
-                controller.useUpperCaseCyrillic, controller.useLowerCaseLatinic, controller.useUpperCaseLatinic, controller.usePunctiationMarks, 
-                controller.useLiteUpperCaseCyrillic);
+        controller.getGame().initializeGame(controller.getShowDuration(), controller.getRandomStringLength(), controller.isUseDigits(), controller.isUseLowerCaseCyrillic(), 
+                controller.isUseUpperCaseCyrillic(), controller.isUseLowerCaseLatinic(), controller.isUseUpperCaseLatinic(), controller.isUsePunctiationMarks(), 
+                controller.isUseLiteUpperCaseCyrillic());
 
-        assertEquals(controller.game.getCurrentSymbolsSet(), 
+        assertEquals(controller.getGame().getCurrentSymbolsSet(), 
                 RandomSymbolsGenerator.DIGITS_ONLY + RandomSymbolsGenerator.CYRILLIC_LOWER_CASE + 
                 RandomSymbolsGenerator.CYRYLLIC_UPPER_CASE  + RandomSymbolsGenerator.CYRYLLIC_LITE_UPPER_CASE + 
                 RandomSymbolsGenerator.LATINIC_LOWER_CASE + RandomSymbolsGenerator.LATINIC_UPPER_CASE + 
-                RandomSymbolsGenerator.PUNCTUATION_MARKS, controller.game.getCurrentSymbolsSet());
+                RandomSymbolsGenerator.PUNCTUATION_MARKS, controller.getGame().getCurrentSymbolsSet());
        
        
     }
     
     public void prepareForReadSettingsTest() {        
-        controller.view.useDigits.setState(true);
-        controller.view.useLCCyryllic.setState(true);
-        controller.view.useUCCyrillic.setState(true);
-        controller.view.useLCLatinic.setState(true);
-        controller.view.useUCLatinic.setState(true);
-        controller.view.usePunctuationMarks.setState(true);  
-        controller.view.useLiteUCCyryllic.setState(true);
+        controller.getView().getUseDigits().setState(true);
+        controller.getView().getUseLCCyryllic().setState(true);
+        controller.getView().getUseUCCyrillic().setState(true);
+        controller.getView().getUseLCLatinic().setState(true);
+        controller.getView().getUseUCLatinic().setState(true);
+        controller.getView().getUsePunctuationMarks().setState(true);  
+        controller.getView().getUseLiteUCCyryllic().setState(true);
         
     }
 }
